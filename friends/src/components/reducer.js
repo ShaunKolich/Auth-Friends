@@ -31,10 +31,7 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoading: false,
                 errorMessage: null,
-                id,
-                name,
-                age,
-                email,
+                friends:action.payload
             }
 
         }

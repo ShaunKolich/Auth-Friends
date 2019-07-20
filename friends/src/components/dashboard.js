@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getFriends } from '../components/actions';
+import { isObjectTypeIndexer } from '@babel/types';
 
 class Dashboard extends React.Component {
     componentDidMount() {
@@ -19,16 +20,17 @@ class Dashboard extends React.Component {
 
     render() {
         const { friends, isLoading } = this.props
-        console.log(this.props);
+        
         return (
             <div>
                 <button type="button" onClick={this.logout}>Logout</button>
-                {friends.map(friend => {
+                {friends.map((friend, index) => {
+                    // console.log(friend)
                     return (
-                        <div>
-
+                        <div key={index}>
+                         {friend.name}
                         </div>
-                    )
+                  )
                 })}
 
             </div>
@@ -38,12 +40,19 @@ class Dashboard extends React.Component {
     }
 
 }
+const mapStateToProps =(state)=>{
+    return {
+        friends: state.friends
+    }
+}
 
 const mapDispatchToProps = {
     getFriends,
 }
 
+
+
 export default withRouter(
     // first param is mapStateToProps
-    connect(null, mapDispatchToProps)(Dashboard)
+    connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 )
