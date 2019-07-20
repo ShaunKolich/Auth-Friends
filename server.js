@@ -74,7 +74,13 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-app.get('/api/friends', authenticator, (req, res) => {
+// app.get('/api/friends', authenticator, (req, res) => {
+//   setTimeout(() => {
+//     res.send(friends);
+//   }, 1000);
+// });
+
+app.get('/api/friends', (req, res) => {
   setTimeout(() => {
     res.send(friends);
   }, 1000);
